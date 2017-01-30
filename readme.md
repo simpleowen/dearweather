@@ -6,7 +6,7 @@
 
 克隆到本地
 
-
+http://www.sinacloud.com/doc/sae/tutorial/helloworld-for-linux-mac.html
 
 
 
@@ -46,6 +46,37 @@ ImportError: No module named flask
 
 
 最后，你可以使用 [credential helper](https://git-scm.com/docs/gitcredentials) 来避免每次提交都要输入密码，如何配置可以参见：https://help.github.com/articles/caching-your-github-password-in-git/
+
+
+
+
+IOError: Unable to open 'index.wsgi'
+
+
+多次推送，部署时间不变，没有commit信息，没有操作者
+
+添加index.html后再推送依然故障如旧
+
+
+以版本2的方式推送
+
+> git push sae master:2
+
+
+这次有操作者和commit信息了，但链接依然打不开
+
+
+google `IOError: Unable to open 'index.wsgi'`
+
+说少了`index.wsgi`文件，建议看这两个官方链接
+
+
+[新手入门](http://www.sinacloud.com/doc/sae/tutorial/index.html)
+
+[python入门指南](http://www.sinacloud.com/doc/sae/python/tutorial.html)
+
+
+
 
 
 绑定微信公众号
