@@ -180,3 +180,37 @@ SyntaxError: Non-ASCII character '\xe4' in file /data1/www/htdocs/636/iyouchat/1
 还有代码逻辑未完成？？？
 
 继续看[微信开发入门指引](https://mp.weixin.qq.com/wiki)
+
+
+将[新浪云sae入门指南](http://www.sinacloud.com/doc/sae/python/tutorial.html#shi-yong-web-kai-fa-kuang-jia)中的flask代码复制到main.py中提交后，打开链接异常
+
+
+```
+Traceback (most recent call last):
+  File "/usr/local/sae/python/lib/python2.7/site-packages/sae/__init__.py", line 18, in new_app
+    return app(environ, start_response)
+  File "/usr/local/sae/python/lib/python2.7/site-packages/flask/app.py", line 1306, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/sae/python/lib/python2.7/site-packages/flask/app.py", line 1294, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/local/sae/python/lib/python2.7/site-packages/flask/app.py", line 1292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/sae/python/lib/python2.7/site-packages/flask/app.py", line 1062, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/sae/python/lib/python2.7/site-packages/flask/app.py", line 1058, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/usr/local/sae/python/lib/python2.7/site-packages/flask/app.py", line 1168, in preprocess_request
+    rv = func()
+  File "/data1/www/htdocs/636/iyouchat/1/main.py", line 14, in before_request
+    MYSQL_DB, port=int(MYSQL_PORT))
+  File "/usr/local/sae/python/lib/python2.7/site-packages/MySQLdb/__init__.py", line 81, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/local/sae/python/lib/python2.7/site-packages/MySQLdb/connections.py", line 187, in __init__
+    super(Connection, self).__init__(*args, **kwargs2)
+OperationalError: (1045, 'access deny')
+
+```
+
+最后一行是'access deny'，上边有MySQLdb的字样，且复制的代码中有导入MySQLdb
+
+所以判断为sae上还没有创建数据库导致。
