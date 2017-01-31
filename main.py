@@ -1,16 +1,16 @@
 # coding:utf-8
 from flask import Flask, g, request
 import hashlib
+import msg
 
 app = Flask(__name__)
-app.debug = True
 
 @app.route('/')
 def hello():
 	return 'Hello,Flask'
 
-@app.route('/weixin')
-def verify_weixin():
+@app.route('/weixin',method=['GET','POST'])
+def weixin():
 	if request.method == 'GET':
 		if len(request.args) > 3:
 			temparr = []
@@ -31,4 +31,10 @@ def verify_weixin():
 			else:
 				return "认证失败，不是微信服务器的请求！"
 	else:
-		return "你请求的方法是：" + request.method
+		data = request.data
+		weather_data = msg.rec(data)
+		# print(self.weather_display.format(provider='心知天气'.rjust(10,' '),city_name=city_name.ljust(5,' '),\
+		# 	weather_status=weather_data['results'][0]['now']['text'].ljust(4,' '),\
+		# 	temp=weather_data['results'][0]['now']['temperature']))
+		echostr = msg.reply(data,weather_data['results'][0]['now']['text'])
+		return echostr

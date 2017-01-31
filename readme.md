@@ -236,3 +236,17 @@ data = web.input()
 
 
 flask里边用什么来获取
+
+request.args
+
+
+验证成功
+
+
+#接收消息
+
+URL接口验证以后，公众平台账号收到的消息将由微信服务器使用HTTP POST推送至该URL。消息内容为XML格式
+
+解析xml
+
+#返回数据
