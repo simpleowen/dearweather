@@ -1,3 +1,4 @@
+# coding:utf-8
 import sae
 
 # 使用flask应用程序代替
