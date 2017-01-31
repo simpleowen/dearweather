@@ -161,4 +161,22 @@ Application端的实现一般是由Python的各种框架来实现的，比如Dja
 
 可以稍微理解一些了
 
-里面有flask的实现
+里面有[flask的实现](http://www.sinacloud.com/doc/sae/python/tutorial.html#flask)
+
+
+File "/data1/www/htdocs/636/iyouchat/1/index.wsgi", line 3
+SyntaxError: Non-ASCII character '\xe4' in file /data1/www/htdocs/636/iyouchat/1/index.wsgi on line 3, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details
+
+
+源码文件头部添加`#coding:utf-8`
+
+返回成功
+
+> hello,flask
+
+
+此时再次提交公众号服务器配置信息，依然提示token验证失败。
+
+还有代码逻辑未完成？？？
+
+继续看[微信开发入门指引](https://mp.weixin.qq.com/wiki)
