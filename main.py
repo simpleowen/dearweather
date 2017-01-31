@@ -10,34 +10,30 @@ def hello():
 	return 'Hello,Flask'
 
 def verification(request):
-	if len(request.args) > 3:
-		temparr = []
-		token = "ichat"
-		signature = request.args["signature"]
-		timestamp = request.args["timestamp"]
-		nonce = request.args["nonce"]
-		echostr = request.args["echostr"]
-		temparr.append(token)
-		temparr.append(timestamp)
-		temparr.append(nonce)
-		temparr.sort()
-		newstr = "".join(temparr)
-		sha1str = hashlib.sha1(newstr)
-		temp = sha1str.hexdigest()
-		if signature == temp:
-			return True
-		else:
-			return False
+	print(request.args)
+
 
 @app.route('/weixin',methods=['GET'])
 def weixin():
-	if verification(request):
-		echostr = request.args["echostr"]
+	temparr = []
+	token = "ichat"
+	signature = request.args["signature"]
+	timestamp = request.args["timestamp"]
+	nonce = request.args["nonce"]
+	echostr = request.args["echostr"]
+	temparr = [token,timestamp,nonce]
+	temparr.sort()
+	newstr = "".join(temparr)
+	sha1str = hashlib.sha1(newstr)
+	temp = sha1str.hexdigest()
+	if signature == temp:
 		return echostr
+	else:
+		return 'False'
 		
 @app.route('/weixin',methods=['POST'])
 def weixin_reply():
-	if verification(request):
+	# if verification(request):
 		data = request.data
 		weather_data = msg.rec(data)
 		# print(self.weather_display.format(provider='心知天气'.rjust(10,' '),city_name=city_name.ljust(5,' '),\
@@ -45,3 +41,4 @@ def weixin_reply():
 		# 	temp=weather_data['results'][0]['now']['temperature']))
 		echostr = msg.reply(data,weather_data['results'][0]['now']['text'])
 		return echostr
+# app.run(debug=True,host='127.0.0.1',port=80)
