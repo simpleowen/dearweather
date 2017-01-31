@@ -250,3 +250,9 @@ URL接口验证以后，公众平台账号收到的消息将由微信服务器�
 解析xml
 
 #返回数据
+
+
+
+#为sae添加第三方包依赖
+
+http://www.sinacloud.com/doc/sae/python/tools.html#tian-jia-di-san-fang-yi-lai-bao
