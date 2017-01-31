@@ -5,8 +5,11 @@ import hashlib
 app = Flask(__name__)
 app.debug = True
 
+@app.route('/')
+	return 'Hello,Flask'
+
 @app.route('/weixin')
-def hello():
+def verify_weixin():
 	if request.method == 'GET':
 		if len(request.args) > 3:
 			temparr = []
