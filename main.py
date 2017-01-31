@@ -9,7 +9,7 @@ app = Flask(__name__)
 def hello():
 	return 'Hello,Flask'
 
-@app.route('/weixin',methods=['GET','POST'])
+@app.route('/weixin',methods=['GET'])
 def weixin():
 	if request.method == 'GET':
 		if len(request.args) > 3:
@@ -30,7 +30,10 @@ def weixin():
 				return echostr
 			else:
 				return "认证失败，不是微信服务器的请求！"
-	else:
+
+@app.route('/weixin',methods=['POST'])
+def weixin_reply():
+	if request.method == 'POST':
 		data = request.data
 		weather_data = msg.rec(data)
 		# print(self.weather_display.format(provider='心知天气'.rjust(10,' '),city_name=city_name.ljust(5,' '),\
