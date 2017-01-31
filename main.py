@@ -9,31 +9,35 @@ app = Flask(__name__)
 def hello():
 	return 'Hello,Flask'
 
+def verification(request):
+	if len(request.args) > 3:
+		temparr = []
+		token = "ichat"
+		signature = request.args["signature"]
+		timestamp = request.args["timestamp"]
+		nonce = request.args["nonce"]
+		echostr = request.args["echostr"]
+		temparr.append(token)
+		temparr.append(timestamp)
+		temparr.append(nonce)
+		temparr.sort()
+		newstr = "".join(temparr)
+		sha1str = hashlib.sha1(newstr)
+		temp = sha1str.hexdigest()
+		if signature == temp:
+			return True
+		else:
+			return False
+
 @app.route('/weixin',methods=['GET'])
 def weixin():
-	if request.method == 'GET':
-		if len(request.args) > 3:
-			temparr = []
-			token = "ichat"
-			signature = request.args["signature"]
-			timestamp = request.args["timestamp"]
-			nonce = request.args["nonce"]
-			echostr = request.args["echostr"]
-			temparr.append(token)
-			temparr.append(timestamp)
-			temparr.append(nonce)
-			temparr.sort()
-			newstr = "".join(temparr)
-			sha1str = hashlib.sha1(newstr)
-			temp = sha1str.hexdigest()
-			if signature == temp:
-				return echostr
-			else:
-				return "认证失败，不是微信服务器的请求！"
-
+	if verification(request):
+		echostr = request.args["echostr"]
+		return echostr
+		
 @app.route('/weixin',methods=['POST'])
 def weixin_reply():
-	if request.method == 'POST':
+	if verification(request):
 		data = request.data
 		weather_data = msg.rec(data)
 		# print(self.weather_display.format(provider='心知天气'.rjust(10,' '),city_name=city_name.ljust(5,' '),\
