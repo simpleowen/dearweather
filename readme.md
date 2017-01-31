@@ -45,11 +45,6 @@ ImportError: No module named flask
 [代码部署手册](http://www.sinacloud.com/doc/sae/tutorial/code-deploy.html#git)
 
 
-最后，你可以使用 [credential helper](https://git-scm.com/docs/gitcredentials) 来避免每次提交都要输入密码，如何配置可以参见：https://help.github.com/articles/caching-your-github-password-in-git/
-
-
-
-
 IOError: Unable to open 'index.wsgi'
 
 
@@ -76,7 +71,37 @@ google `IOError: Unable to open 'index.wsgi'`
 [python入门指南](http://www.sinacloud.com/doc/sae/python/tutorial.html)
 
 
+再次push到版本1，
 
+打开链接成功
+
+
+还发现部署时间是不变的，而且没有操作者和commit信息。
+
+
+所以可以删除2版本
+
+> git push sae :2
+
+
+
+每次都要输入用户名和密码，不方便
+
+可以使用 [credential helper](https://git-scm.com/docs/gitcredentials) 来避免每次提交都要输入密码，如何配置可以参见：https://help.github.com/articles/caching-your-github-password-in-git/
 
 
 绑定微信公众号
+
+填写配置信息后，
+
+Token验证失败。
+
+在[微信的入门指引](https://mp.weixin.qq.com/wiki)中有这样一句话，
+
+> 3） 现在选择提交肯定是验证token失败，因为还需要完成代码逻辑
+
+现在提交的文件中，有两个文件包含代码
+
+index.wsgi
+
+main.py
