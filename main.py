@@ -9,7 +9,7 @@ app = Flask(__name__)
 def hello():
 	return 'Hello,Flask'
 
-@app.route('/weixin',method=['GET','POST'])
+@app.route('/weixin',methods=['GET','POST'])
 def weixin():
 	if request.method == 'GET':
 		if len(request.args) > 3:
