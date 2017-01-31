@@ -2,6 +2,14 @@
 import xml.etree.ElementTree as ET
 from weather_query import ThinkPage as TP
 
+msg_xml = """<xml>
+  <ToUserName><![CDATA[toUser]]></ToUserName>
+  <FromUserName><![CDATA[fromUser]]></FromUserName>
+  <CreateTime>1348831860</CreateTime>
+  <MsgType><![CDATA[text]]></MsgType>
+  <Content><![CDATA[北京]]></Content>
+</xml>"""
+
 def parse_msg(msg_xml):
 	root = ET.fromstring(msg_xml)
 	msg = {}
@@ -11,11 +19,10 @@ def parse_msg(msg_xml):
 
 def rec(msg_xml):
 	tp = TP()
-	weather_data = tp.query_weather(parse_msg(msg_xml)[Content])
+	weather_data = tp.query_weather(parse_msg(msg_xml)['Content'])
 	return weather_data
-	
 
-def reply(msg_xml,content):
+def reply(msg_xml,text):
 	rec_msg = parse_msg(msg_xml)
 	reply_msg = """<xml>
              <ToUserName><![CDATA[%s]]></ToUserName>
@@ -25,5 +32,8 @@ def reply(msg_xml,content):
              <Content><![CDATA[%s]]></Content>
              <FuncFlag>0</FuncFlag>
              </xml>"""
-    echostr = reply_msg % (rec_msg['ToUserName'],rec_msg['FromUserName'],rec_msg['CreateTime'],rec_msg['MsgType'],content)
-    return echostr
+	echostr = reply_msg % (rec_msg['ToUserName'],rec_msg['FromUserName'],rec_msg['CreateTime'],rec_msg['MsgType'],text)
+	return echostr
+
+# print(rec(msg_xml))
+# print(reply(msg_xml,'sun'))
