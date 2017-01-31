@@ -19,7 +19,7 @@ def teardown_request(exception):
 
 @app.route('/')
 def hello():
-	s = get()
+	s = GET()
     return s
 
 # @app.route('/demo', methods=['GET', 'POST'])
