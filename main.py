@@ -5,12 +5,12 @@ import hashlib
 app = Flask(__name__)
 app.debug = True
 
-@app.route('/')
+@app.route('/weixin')
 def hello():
 	if request.method == 'GET':
 		if len(request.args) > 3:
 			temparr = []
-			token = "你的token"
+			token = "ichat"
 			signature = request.args["signature"]
 			timestamp = request.args["timestamp"]
 			nonce = request.args["nonce"]
