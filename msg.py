@@ -11,7 +11,8 @@ def parse_msg(msg_xml):
 
 def rec(msg_xml):
 	tp = TP()
-	weather_data = tp.query_weather(parse_msg(msg_xml)['Content'])
+	msg = parse_msg(msg_xml)
+	weather_data = tp.query_weather(msg['Content'])
 	return weather_data
 
 def reply(msg_xml,text):
@@ -22,8 +23,6 @@ def reply(msg_xml,text):
              <CreateTime>%s</CreateTime>
              <MsgType><![CDATA[%s]]></MsgType>
              <Content><![CDATA[%s]]></Content>
-             <FuncFlag>0</FuncFlag>
              </xml>"""
 	echostr = reply_msg % (rec_msg['ToUserName'],rec_msg['FromUserName'],rec_msg['CreateTime'],rec_msg['MsgType'],text)
 	return echostr
-	
