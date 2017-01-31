@@ -1,6 +1,6 @@
-申请公众号
+#申请公众号
 
-注册云平台
+#注册云平台
 
 建立一个github仓库
 
@@ -10,7 +10,7 @@ http://www.sinacloud.com/doc/sae/tutorial/helloworld-for-linux-mac.html
 
 
 
-flask MVP
+#flask MVP
 
 > python main.py
 
@@ -27,7 +27,7 @@ ImportError: No module named flask
 > sudo python main.py
 
 
-部署到云平台，新浪
+#部署到云平台，新浪
 
 在本地的代码仓库里，添加一个新的git远程仓库 sae
 > git remote add sae https://git.sinacloud.com/iyouchat
@@ -90,7 +90,7 @@ google `IOError: Unable to open 'index.wsgi'`
 可以使用 [credential helper](https://git-scm.com/docs/gitcredentials) 来避免每次提交都要输入密码，如何配置可以参见：https://help.github.com/articles/caching-your-github-password-in-git/
 
 
-绑定微信公众号
+#绑定微信公众号
 
 填写配置信息后，
 
@@ -105,3 +105,60 @@ Token验证失败。
 index.wsgi
 
 main.py
+
+
+打开链接，返回的是'hello world'.
+
+两串代码中都是return hello world，
+
+为了确定是哪个代码在响应，修改其中一个返回值
+
+将index.wsgi的返回值改为
+
+return index.wsgi
+
+
+再次提交到sae，打开链接返回‘index wsgi’
+
+说明打开链接，index.wsgi负责响应。
+
+
+flask的代码还没有起到作用
+
+
+#所以这个index.wsgi的作用是什么？？？
+
+WSGI是Web Server Gateway Interface的缩写
+
+看sae帮助文档[参考](http://www.sinacloud.com/doc/sae/python/tutorial.html#shi-yong-web-kai-fa-kuang-jia)
+
+index.wsgi是应用的代码入口文件
+
+新浪云上的 Python 应用的入口为 index.wsgi:application ，也就是 index.wsgi 这个文件中名为 application 的 callable object。在 helloworld 应用中，该 application 为一个 wsgi callable object。
+
+可调用对象是什么？
+
+[wsgi理解](http://www.cnblogs.com/eric-nirnava/p/wsgi.html)
+
+[WSGI](http://www.jianshu.com/p/34ee01d85b0a)
+
+[WSGI简介](https://segmentfault.com/a/1190000003069785)
+
+[PEP 3333 -- Python Web Server Gateway Interface v1.0.1](https://www.python.org/dev/peps/pep-3333/)
+
+头晕，flask跟wsgi，跟web服务器，跟中间件啥关系？
+
+
+在[WSGI简介](https://segmentfault.com/a/1190000003069785)中有这么一句，
+Application端的实现一般是由Python的各种框架来实现的，比如Django, web.py等，一般开发者不需要关心WSGI的实现，框架会会提供接口让开发者获取HTTP请求的内容以及发送HTTP响应。
+
+大概看了这么些链接后
+
+这下放心了，可以专心搞flask
+
+回头在看[新浪云sae入门指南](http://www.sinacloud.com/doc/sae/python/tutorial.html#shi-yong-web-kai-fa-kuang-jia)
+
+
+可以稍微理解一些了
+
+里面有flask的实现
