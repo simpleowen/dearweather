@@ -181,7 +181,6 @@ SyntaxError: Non-ASCII character '\xe4' in file /data1/www/htdocs/636/iyouchat/1
 
 继续看[微信开发入门指引](https://mp.weixin.qq.com/wiki)
 
-
 将[新浪云sae入门指南](http://www.sinacloud.com/doc/sae/python/tutorial.html#shi-yong-web-kai-fa-kuang-jia)中的flask代码复制到main.py中提交后，打开链接异常
 
 
@@ -214,3 +213,26 @@ OperationalError: (1045, 'access deny')
 最后一行是'access deny'，上边有MySQLdb的字样，且复制的代码中有导入MySQLdb
 
 所以判断为sae上还没有创建数据库导致。
+
+创建数据库实例，创建数据库，创建用户，建立demo表后，依然报同样的异常。
+
+先注释掉main.py中的有关数据库的语句
+
+继续看[微信开发入门指引](https://mp.weixin.qq.com/wiki)
+
+在示例中，新增了一个处理文件handle.py
+
+看逻辑流程，这个文件就是在验证token
+
+所以我的应用中也需要增加验证token的代码
+
+
+仿照[微信开发入门指引](https://mp.weixin.qq.com/wiki)的handle代码，为main.py增加token验证代码
+
+web.py
+
+import web
+data = web.input()
+
+
+flask里边用什么来获取
