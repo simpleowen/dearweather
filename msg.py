@@ -17,12 +17,6 @@ def rec(msg_xml):
 
 def reply(msg_xml,text):
 	rec_msg = parse_msg(msg_xml)
-	reply_msg = """<xml>
-	<ToUserName><![CDATA[%s]]></ToUserName>
-	<FromUserName><![CDATA[%s]]></FromUserName>
-	<CreateTime>%s</CreateTime>
-	<MsgType><![CDATA[%s]]></MsgType>
-	<Content><![CDATA[%s]]></Content>
-	</xml>"""
+	reply_msg = """<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[%s]]></MsgType><Content><![CDATA[%s]]></Content></xml>"""
 	echostr = reply_msg % (rec_msg['ToUserName'],rec_msg['FromUserName'],rec_msg['CreateTime'],rec_msg['MsgType'],text)
 	return echostr

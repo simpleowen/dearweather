@@ -41,4 +41,4 @@ def weixin_reply():
 		# 	temp=weather_data['results'][0]['now']['temperature']))
 		echostr = msg.reply(data,weather_data['results'][0]['now']['text'])
 		return echostr
-app.run(debug=True,host='127.0.0.1',port=80)
+# app.run(debug=True,host='127.0.0.1',port=80)
