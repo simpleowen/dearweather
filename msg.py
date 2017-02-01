@@ -33,4 +33,5 @@ def reply(msg_xml,text):
 	# print(echostr)
 	if parse_msg(echostr)['MsgType'] == 'text':
 		return echostr
+	# return 'text'
 	return 'success'
