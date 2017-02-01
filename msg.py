@@ -27,8 +27,10 @@ def reply(msg_xml,text):
 	<Content><![CDATA[%s]]></Content>
 	</xml>
 	"""
-	echostr = reply_msg % (rec_msg['ToUserName'],rec_msg['FromUserName'],rec_msg['CreateTime'],rec_msg['MsgType'],text)
+	echostr = reply_msg % (rec_msg['ToUserName'],rec_msg['FromUserName'],rec_msg['CreateTime'],rec_msg['MsgType'],'text')
+	echostr = echostr.encode(encoding='utf-8')
+	# print(type(echostr))
 	# print(echostr)
-	if parse_msg(echostr.encode(encoding='utf-8'))['MsgType'] == 'text':
-		return echostr.encode(encoding='utf-8')
+	if parse_msg(echostr)['MsgType'] == 'text':
+		return echostr
 	return 'success'
