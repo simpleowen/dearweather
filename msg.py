@@ -29,6 +29,6 @@ def reply(msg_xml,text):
 	"""
 	echostr = reply_msg % (rec_msg['ToUserName'],rec_msg['FromUserName'],rec_msg['CreateTime'],rec_msg['MsgType'],text)
 	# print(echostr)
-	# if parse_msg(echostr.encode(encoding='utf-8'))['MsgType'] == 'text':
-	# 	return echostr
+	if parse_msg(echostr.encode(encoding='utf-8'))['MsgType'] == 'text':
+		return echostr.encode(encoding='utf-8')
 	return 'success'
