@@ -33,7 +33,7 @@ def reply(msg_xml,text):
 	echostr = echostr.encode(encoding='utf-8')
 	# print(type(echostr))
 	# print(echostr)
-	if text !== None:
+	if text != None:
 		return echostr
 	else:
 		return 'success'
