@@ -2,7 +2,9 @@
 from flask import Flask, g, request
 import hashlib
 import msg
-
+# import sys
+# reload(sys)
+# sys.setdefaultencoding("utf-8")
 app = Flask(__name__)
 
 @app.route('/')
@@ -36,10 +38,12 @@ def weixin_reply():
 	# if verification(request):
 		data = request.data
 		weather_data = msg.rec(data)
-		# print(self.weather_display.format(provider='心知天气'.rjust(10,' '),city_name=city_name.ljust(5,' '),\
-		# 	weather_status=weather_data['results'][0]['now']['text'].ljust(4,' '),\
-		# 	temp=weather_data['results'][0]['now']['temperature']))
-		echostr = msg.reply(data,weather_data['results'][0]['now']['text'])
+		if weather_data == None:
+			content = '没有找到该城市'.decode('utf-8')
+		else:
+			content = weather_data['results'][0]['now']['text'] + "," + \
+			weather_data['results'][0]['now']['temperature'] + "度".decode('utf-8')
+		echostr = msg.reply(data,content)
 		return echostr
 
 # app.run(debug=True,host='127.0.0.1',port=80)

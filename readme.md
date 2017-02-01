@@ -264,6 +264,7 @@ http://www.sinacloud.com/doc/sae/python/tools.html#tian-jia-di-san-fang-yi-lai-b
 http://mp.weixin.qq.com/debug
 
 
+#大坑
 postman发送POST请求能正常返回天气数据
 
 在线接口调试工具也能正确返回天气数据
@@ -276,3 +277,13 @@ postman发送POST请求能正常返回天气数据
 2、开发者回复了异常数据，比如JSON数据等
 
 **往来用户**
+
+
+#编码问题
+
+
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xef in position 0: ordinal not in range(128)
+
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
