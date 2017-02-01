@@ -16,8 +16,10 @@ def rec(msg_xml):
 	weather_data = tp.query_weather(msg['Content'])
 	return weather_data
 
-def reply(msg_xml,text):
-	# rec_msg = parse_msg(msg_xml)
+def reply(msg_xml,content):
+	rec_msg = parse_msg(msg_xml)
+	to_user_name = rec_msg['ToUserName']
+	from_user_name = rec_msg['FromUserName']
 	reply_msg = \
 	u"""
 	<xml>
@@ -29,11 +31,10 @@ def reply(msg_xml,text):
 	</xml>
 	"""
 	creat_time =int(time.time())
-	echostr = reply_msg % ('ToUserName','FromUserName',creat_time,'text',text)
-	echostr = echostr.encode(encoding='utf-8')
+	echostr = reply_msg % (to_user_name,from_user_name,creat_time,'text',content)
 	# print(type(echostr))
 	# print(echostr)
-	if text != None:
+	if content != None:
 		return echostr
 	else:
 		return 'success'
