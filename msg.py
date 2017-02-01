@@ -1,5 +1,6 @@
 # coding:utf-8
 import xml.etree.ElementTree as ET
+import time
 from weather_query import ThinkPage as TP
 
 def parse_msg(msg_xml):
@@ -16,7 +17,7 @@ def rec(msg_xml):
 	return weather_data
 
 def reply(msg_xml,text):
-	rec_msg = parse_msg(msg_xml)
+	# rec_msg = parse_msg(msg_xml)
 	reply_msg = \
 	u"""
 	<xml>
@@ -27,10 +28,11 @@ def reply(msg_xml,text):
 	<Content><![CDATA[%s]]></Content>
 	</xml>
 	"""
-	echostr = reply_msg % (rec_msg['ToUserName'],rec_msg['FromUserName'],rec_msg['CreateTime'],rec_msg['MsgType'],'text')
+	creat_time =int(time.time())
+	echostr = reply_msg % ('ToUserName','FromUserName',creat_time,'text',text)
 	echostr = echostr.encode(encoding='utf-8')
 	# print(type(echostr))
-	# print(echostr)
+	print(echostr)
 	if parse_msg(echostr)['MsgType'] == 'text':
 		return echostr
 	# return 'text'
