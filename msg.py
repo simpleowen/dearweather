@@ -19,7 +19,8 @@ def rec(msg_xml):
 		content = '没有找到该城市'.decode('utf-8')
 		return content
 	else:
-		content = weather_data['results'][0]['now']['text'] + "," + \
+		content = weather_data['results'][0]['location']['name'] + " " + \
+		weather_data['results'][0]['now']['text'] + "," + \
 		"\n温度：" + weather_data['results'][0]['now']['temperature'] + "度"+ "," + \
 		"\n紫外线强度：" + life_data['results'][0]['suggestion']['uv']['brief']+ "," + \
 		"\n穿衣：" + life_data['results'][0]['suggestion']['dressing']['brief']+ "," + \
