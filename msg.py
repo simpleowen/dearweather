@@ -16,7 +16,7 @@ def rec(msg_xml):
 	weather_data = tp.get_weather_from_api(msg['Content'])
 	life_data = tp.get_life_from_api(msg['Content'])
 	if weather_data == None: 
-		content = '没有找到该城市'.decode('utf-8')
+		content = '没有找到该城市'
 		return content
 	else:
 		content = weather_data['results'][0]['location']['name'] + " " + \
