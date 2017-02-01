@@ -22,7 +22,7 @@ def reply(msg_xml,content):
 	from_user_name = rec_msg['FromUserName']
 	reply_msg = """<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[%s]]></MsgType><Content><![CDATA[%s]]></Content></xml>"""
 	creat_time =int(time.time())
-	echostr = reply_msg % (from_user_name,to_user_name,creat_time,'text',content)
+	echostr = reply_msg % (to_user_name,from_user_name,creat_time,'text',content)
 	# print(type(echostr))
 	# print(echostr)
 	if content != None:
