@@ -42,8 +42,8 @@ def reply(msg_xml,content):
 	<MsgType><![CDATA[%s]]></MsgType>
 	<Content><![CDATA[%s]]></Content>
 	</xml>"""
-	creat_time =int(time.time())
-	echostr = reply_msg % (from_user_name,to_user_name,creat_time,'text',content)
+	create_time =int(time.time())
+	echostr = reply_msg % (from_user_name,to_user_name,create_time,'text',content)
 	if content != None:
 		return echostr
 	else:
