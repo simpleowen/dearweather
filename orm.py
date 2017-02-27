@@ -89,6 +89,6 @@ class CRUD(object):
 
 	def show_help(self):
 		"""show help infomation"""
-		help_info = ['输入 城市名，可获取城市的天气;','单击 帮助 按钮，获取帮助文档;',\
-		'单击 历史 按钮，获取查询历史;','单击 更正 按钮，可以进入更正页面修改本地数据库数据。']
+		help_info = ['Input a city name ,get it\'s weather;','Click help button, get help doc',\
+		'Click history button, get query history;','Click modify button ,ready to update data.']
 		return help_info

@@ -15,18 +15,18 @@ def rec(msg_xml):
 	tp = TP()
 	crud = CRUD()
 	msg = parse_msg(msg_xml)
-	if msg['Content'] == '历史':
+	if msg['Content'] == 'History':
 		content = crud.show_history()
 		# return content
-	elif msg['Content'] == '帮助':
-		content = '输入 城市名，可获取城市的天气;','单击 帮助 按钮，获取帮助文档;',\
-		'单击 历史 按钮，获取查询历史;','单击 更正 按钮，可以进入更正页面修改本地数据库数据。'
+	elif msg['Content'] == 'Help':
+		content = 'Input a city name ,get it\'s weather;','Click help button, get help doc',\
+		'Click history button, get query history;','Click modify button ,ready to update data.'
 		# return content
 	else:
 		weather_data = tp.get_weather_from_api(msg['Content'])
 		life_data = tp.get_life_from_api(msg['Content'])
 		if weather_data == None: 
-			content = '没有找到该城市'
+			content = 'No found the city'
 			return content
 		else:
 			query_datetime = datetime.datetime.utcnow()
@@ -41,14 +41,14 @@ def rec(msg_xml):
 			crud.save_to_db(weather) 
 			content = weather_data['results'][0]['location']['name'] + " " + \
 			weather_data['results'][0]['now']['text'] + "," + \
-			"\n温度：" + weather_data['results'][0]['now']['temperature'] + "度"+ "," + \
-			"\n紫外线强度：" + life_data['results'][0]['suggestion']['uv']['brief']+ "," + \
-			"\n穿衣：" + life_data['results'][0]['suggestion']['dressing']['brief']+ "," + \
-			"\n运动：" + life_data['results'][0]['suggestion']['sport']['brief']+ "," + \
-			"\n感冒：" + life_data['results'][0]['suggestion']['flu']['brief']+ "," + \
-			"\n旅游：" + life_data['results'][0]['suggestion']['travel']['brief']+ "," + \
-			"\n洗车：" + life_data['results'][0]['suggestion']['car_washing']['brief']+ "," + \
-			"\n数据更新时间：" + life_data['results'][0]['last_update']
+			"\nTempreture:" + weather_data['results'][0]['now']['temperature'] + "度"+ "," + \
+			"\nUV:" + life_data['results'][0]['suggestion']['uv']['brief']+ "," + \
+			"\nDressing:" + life_data['results'][0]['suggestion']['dressing']['brief']+ "," + \
+			"\nSport:" + life_data['results'][0]['suggestion']['sport']['brief']+ "," + \
+			"\nFlu:" + life_data['results'][0]['suggestion']['flu']['brief']+ "," + \
+			"\nTravel:" + life_data['results'][0]['suggestion']['travel']['brief']+ "," + \
+			"\nCar_washing:" + life_data['results'][0]['suggestion']['car_washing']['brief']+ "," + \
+			"\nlast_update:" + life_data['results'][0]['last_update']
 			# return content
 	return content
 
