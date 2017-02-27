@@ -2,7 +2,7 @@
 import xml.etree.ElementTree as ET
 import time
 from weather_query import ThinkPage as TP
-from run import show_history,save_to_db
+from orm import CRUD
 
 def parse_msg(msg_xml):
 	root = ET.fromstring(msg_xml)
@@ -13,9 +13,10 @@ def parse_msg(msg_xml):
 
 def rec(msg_xml):
 	tp = TP()
+	crud = CRUD()
 	msg = parse_msg(msg_xml)
 	if msg['Content'] == '历史':
-		content = show_history()
+		content = crud.show_history()
 		# return content
 	elif msg['Content'] == '帮助':
 		content = '输入 城市名，可获取城市的天气;','单击 帮助 按钮，获取帮助文档;',\
@@ -36,8 +37,8 @@ def rec(msg_xml):
 			weather['client_ip'] = ''
 			weather['query_utc_datetime'] = query_datetime
 			weather['tempreture_unit'] = 'C'
-			weather['user_name'] = 'weixin'
-			save_to_db(weather) 
+			weather['user_name'] = 'WEIXIN'
+			crud.save_to_db(weather) 
 			content = weather_data['results'][0]['location']['name'] + " " + \
 			weather_data['results'][0]['now']['text'] + "," + \
 			"\n温度：" + weather_data['results'][0]['now']['temperature'] + "度"+ "," + \

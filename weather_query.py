@@ -1,6 +1,9 @@
 # coding:utf-8
 import requests
 import time
+import datetime
+from orm import Weather,History,CRUD
+
 
 class ThinkPage(object):
 	"""心知天气接口"""
@@ -28,6 +31,25 @@ class ThinkPage(object):
 		res_dict = res.json()
 		return res_dict
 
+	def query_weather(self,city_name,client_ip):
+		"""query weather from api"""
+		weather_dict = self.get_weather_from_api(city_name)
+		# life_dict = tp.get_life_from_api(city_name)
+		if weather_dict == None:
+			return ['no infomation']
+		else:
+			query_datetime = datetime.datetime.utcnow()#.strftime('%Y-%m-%d %H:%M:%S')		
+			weather = {}
+			weather['status'] = weather_dict['results'][0]['now']['text']
+			weather['tempreture'] = weather_dict['results'][0]['now']['temperature']
+			weather['city_name'] = weather_dict['results'][0]['location']['name']
+			weather['client_ip'] = client_ip
+			weather['query_utc_datetime'] = query_datetime
+			weather['tempreture_unit'] = 'C'
+			weather['user_name'] = 'WEB'
+			crud = CRUD(weather)
+			crud.save_to_db() 
+			return ["City : "+ weather['city_name'] , "Weather: "+ weather['status'] ,"Tempreture: " + weather['tempreture'] + "C"]	
 
 class BaiduMap(object):
 	"""百度地图接口"""
