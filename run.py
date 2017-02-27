@@ -14,19 +14,19 @@ from orm import CRUD
 def index():
 	"""response index page"""
 	if request.method == 'POST':
-		if request.form['button'] == 'Query':
+		if request.form['button'] == u'Query':
 			city_name = request.form['city_name']
 			client_ip = request.remote_addr
 			weather = tp.query_weather(city_name,client_ip)
 			return render_template('index.html',display='query',info=weather)
 	else:
-		if request.args.get('button') == 'History':
+		if request.args.get('button') == u'History':
 			his_info = crud.show_history()
 			return render_template('index.html',display='history',info=his_info)
-		elif request.args.get('button') == 'Help':
+		elif request.args.get('button') == u'Help':
 			help_info = crud.show_help()
 			return render_template('index.html',display='help',info=help_info)
-		elif request.args.get('button') == 'Modify':
+		elif request.args.get('button') == u'Modify':
 			return redirect(url_for('modify'))
 	return render_template('index.html',info='')
 
@@ -41,16 +41,16 @@ def modify():
 		weather['status'] = request.form['weather_status']
 		weather['tempreture'] = request.form['tempreture']
 		weather['tempreture_unit'] = request.form['tempreture_unit']
-		if request.form['button'] == '更正':
+		if request.form['button'] == u'更正':
 			if len(crud.read_weather(weather['city_name'])) > 0:
 				crud.update_weather(weather)
 				flash("更新成功")
 			else:
 				flash("没有该城市数据，不能更新，请先查询")
 			info = []
-		elif request.form['button'] == '返回':
+		elif request.form['button'] == u'返回':
 			return redirect(url_for('index'))
-		elif request.form['button'] == '本地数据':
+		elif request.form['button'] == u'本地数据':
 			info = crud.read_weather()
 		return render_template('modify.html',info=info)
 
