@@ -82,4 +82,4 @@ def weixin():
 if __name__ == '__main__':
 	crud = CRUD()
 	tp = TP()
-	app.run(debug=True)
+	app.run()
