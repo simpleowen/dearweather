@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>天气查询系统</title>
+<style type="text/css">
+	body{text-align: center;}
+</style>
+{{ moment.include_jquery() }}
+{{ moment.include_moment() }}
+</head>
+<body>
+<h1>天气查询系统</h1>
+
+<table align="center">
+<tr>
+<td>
+	<form action="/" method="POST" >
+		<label>请输入城市名：</label>
+		<input type="text" name="city_name">
+		<input type="submit" name="button" value="Query">
+	</form>
+</td>
+<td>
+	<form action="/" method="GET" >
+	<input type="submit" name="button" value="History">
+	<input type="submit" name="button" value="Help">
+	<input type="submit" name="button" value="Modify">
+</form>
+</td>
+</tr>
+</table>
+{% if display == 'history' %}
+	{% for inf in info %}
+		<p>{{moment(inf[2]).format('YYYY-MM-DD HH:mm:ss')}}#{{inf[0],inf[1],inf[3],inf[4]}} </p>
+	{% endfor %}
+{% else %}
+	{% for inf in info %}
+		<p>{{inf}}</p>
+	{% endfor %}
+{% endif %}
+<!-- {{get_flashed_messages()}} -->
+</body>
+</html>

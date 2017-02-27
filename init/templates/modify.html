@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>天气查询系统</title>
+<style type="text/css">
+	body{text-align: center;}
+</style>
+</head>
+<body>
+<h1>天气数据更正系统</h1>
+<form action="/modify" method="POST" >
+	<p>
+	<label>城市名：</label>
+	<input type="text" name="city_name">
+	</p>
+	<p>
+	<label>天气状况：</label>
+	<input type="text" name="weather_status">
+	</p>
+	<p>
+	<label>温度：</label>
+	<input type="text" name="tempreture">
+	</p>
+	<p>
+	<label>温度单位：</label>
+	<input type="text" name="tempreture_unit" value = "C">
+	</p>
+	<p>
+	<input type="submit" name="button" value="更正">
+	<input type="submit" name="button" value="返回">
+	<input type="submit" name="button" value="本地数据">
+	<input type="reset" name="button" value="取消">
+	</p>
+</form>
+
+{% for inf in info %}
+<p>{{inf}}</p>
+{% endfor %}
+
+{{ get_flashed_messages() }}
+</body>
+</html>
