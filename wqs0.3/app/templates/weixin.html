@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Weixin Test System</title>
+<style type="text/css">
+	body{text-align: center;}
+</style>
+</head>
+<body>
+<h1>WeiXin Test System</h1>
+<form action="/weixintest" method="POST" >
+	<p>
+	<label>ToUserName:</label>
+	<input type="text" name="tousername" value="toUser">
+	</p>
+	<p>
+	<label>FromUserName:</label>
+	<input type="text" name="fromusername" value="fromUser">
+	</p>
+	<p>
+	<label>CreateTime:</label>
+	<input type="text" name="createtime" value="1348831860">
+	</p>
+	<p>
+	<label>MsgType:</label>
+	<input type="text" name="msgtype" value="text">
+	</p>
+	<p>
+	<label>Content:</label>
+	<input type="text" name="content" value="广州">
+	</p>
+	<p>
+	<label>MsgId:</label>
+	<input type="text" name="msgid" value="1234567890123456">
+	</p>
+	<p>
+	<input type="submit" name="send" value="Send">
+	<input type="reset" name="cancel" value="Cancel">
+	</p>
+</form>
+
+<p>{{ info }}</p>
+
+<!-- {% for inf in info %}
+<p>{{inf}}</p>
+{% endfor %}
+
+{{ get_flashed_messages() }} -->
+</body>
+</html>

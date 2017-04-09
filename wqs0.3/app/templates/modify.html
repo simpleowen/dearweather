@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Weather Query System</title>
+<style type="text/css">
+	body{text-align: center;}
+</style>
+</head>
+<body>
+<h1>Weather Data Update System</h1>
+<form action="/modify" method="POST" >
+	<p>
+	<label>City:</label>
+	<input type="text" name="city_name">
+	</p>
+	<p>
+	<label>Weather Status:</label>
+	<input type="text" name="weather_status">
+	</p>
+	<p>
+	<label>Tempreture:</label>
+	<input type="text" name="tempreture">
+	</p>
+	<p>
+	<label>Unit:</label>
+	<input type="text" name="tempreture_unit" value = "C">
+	</p>
+	<p>
+	<input type="submit" name="button" value="Update">
+	<input type="submit" name="button" value="Back">
+	<input type="submit" name="button" value="DB">
+	<input type="reset" name="button" value="Cancel">
+	</p>
+</form>
+
+{% for inf in info %}
+<p>{{inf}}</p>
+{% endfor %}
+
+{{ get_flashed_messages() }}
+</body>
+</html>
